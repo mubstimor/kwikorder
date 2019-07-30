@@ -1,5 +1,6 @@
 package mubstimor.android.kwikorder.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -57,5 +58,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         progressBar.setVisibility(View.INVISIBLE);
         tvResponse.setText(response);
         btnLogin.setEnabled(true);
+
+        if (response == "Login Successful") {
+            Intent intent = new Intent(getApplicationContext(), AvailableOrdersActivity.class);
+            startActivity(intent);
+        }
     }
 }

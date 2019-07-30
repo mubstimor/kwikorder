@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         btnLogin.setEnabled(true);
 
         if (response == "Login Successful") {
-            Intent intent = new Intent(getApplicationContext(), AvailableOrdersActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
     }

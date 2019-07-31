@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
             intent = new Intent(this, MainActivity.class);
         } else if (id == R.id.nav_gallery) {
-            intent = new Intent(this, NewOrderActivity.class);
+            intent = new Intent(this, RecordOrderActivity.class);
 
         }
 

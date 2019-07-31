@@ -23,16 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name=".ui.NewOrderActivity"
-            android:label="@string/title_activity_new_order"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.RecordOrderActivity"
+            android:label="@string/title_activity_record_order"
             android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

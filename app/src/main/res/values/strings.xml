@@ -17,7 +17,7 @@
 
     <string name="biz_logo">Logo</string>
     <string name="title_activity_available_orders">Available Orders</string>
-    <string name="title_activity_new_order">Add Order</string>
+    <string name="title_activity_record_order">Add Order</string>
     <string name="title_activity_main">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

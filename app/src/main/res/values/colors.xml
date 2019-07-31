@@ -7,4 +7,5 @@
     <color name="bgColor">#F5F5F7</color>
     <color name="textColor">#1D2126</color>
     <color name="actionBarText">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>

@@ -9,9 +9,13 @@
             android:icon="@drawable/ic_menu_home_black_24dp"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_add_box_black_24dp"
-            android:title="@string/menu_neworder" />
+        android:id="@+id/nav_neworder"
+        android:icon="@drawable/ic_menu_add_box_black_24dp"
+        android:title="@string/menu_neworder" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout_black_24dp"
+            android:title="@string/menu_logout" />
     </group>
 
 </menu>

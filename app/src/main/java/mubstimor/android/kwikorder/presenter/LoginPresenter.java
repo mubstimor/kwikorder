@@ -35,27 +35,28 @@ public class LoginPresenter {
 
         HashMap<String, LoginModel> loginInfo = new HashMap<>();
         loginInfo.put("user", loginModel);
-        System.out.println(loginInfo);
 
         apiService
                 .getAPI()
                 .postLogin(loginInfo)
-                .enqueue(new Callback<ResponseBody>() {
+                .enqueue(new Callback<LoginModel>() {
                     @Override
                     public void onResponse(
-                            Call<ResponseBody> call,
-                            Response<ResponseBody> response
+                            Call<LoginModel> call,
+                            Response<LoginModel> response
                     ) {
+                        LoginModel data = response.body();
+
                         if (response.isSuccessful()) {
-                            loginView.responseReady("Login Successful");
+                            loginView.responseReady(data);
                         } else {
-                            loginView.responseReady("Invalid Login Credentials");
+                            loginView.responseReady(null);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        loginView.responseReady("unable to send message");
+                    public void onFailure(Call<LoginModel> call, Throwable t) {
+                        loginView.responseReady(null);
                     }
                 });
     }

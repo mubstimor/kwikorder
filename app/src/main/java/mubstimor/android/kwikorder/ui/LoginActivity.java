@@ -2,6 +2,7 @@ package mubstimor.android.kwikorder.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import mubstimor.android.kwikorder.R;
 import mubstimor.android.kwikorder.model.LoginModel;
 import mubstimor.android.kwikorder.presenter.LoginPresenter;
+import mubstimor.android.kwikorder.util.Constants;
+import mubstimor.android.kwikorder.util.PreferencesManager;
 import mubstimor.android.kwikorder.view.LoginView;
 
 
@@ -23,11 +26,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     TextView tvResponse;
     ProgressBar progressBar;
 
+    PreferencesManager preferencesManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        preferencesManager = new PreferencesManager(getApplicationContext());
+        Log.i("CURRENT USER is ", preferencesManager.getValue(Constants.KEY_USERNAME));
+        if(preferencesManager.getValue(Constants.KEY_USERNAME).length() > 1) {
+            loadHome();
+        }
 
         txtEmail = (EditText) findViewById(R.id.username);
         txtPassword = (EditText) findViewById(R.id.password);
@@ -54,14 +64,22 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void responseReady(String response) {
+    public void responseReady(LoginModel loginResponse) {
         progressBar.setVisibility(View.INVISIBLE);
-        tvResponse.setText(response);
         btnLogin.setEnabled(true);
 
-        if (response == "Login Successful") {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+        if (loginResponse != null) {
+            preferencesManager.setValue(Constants.KEY_USEREMAIL, loginResponse.getEmail());
+            preferencesManager.setValue(Constants.KEY_USERNAME, loginResponse.getUsername());
+            preferencesManager.setValue(Constants.KEY_USERTOKEN, loginResponse.getToken());
+            loadHome();
+        } else {
+            tvResponse.setText("Invalid login details");
         }
+    }
+
+    private void loadHome() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 }

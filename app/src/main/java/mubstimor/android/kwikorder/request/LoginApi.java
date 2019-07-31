@@ -21,6 +21,6 @@ public interface LoginApi {
      * @return body this is usually a json object
      */
     @POST("/api/v1/users/login/")
-    Call<ResponseBody> postLogin(@Body HashMap<String, LoginModel> loginInfo);
+    Call<LoginModel> postLogin(@Body HashMap<String, LoginModel> loginInfo);
 
 }

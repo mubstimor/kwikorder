@@ -21,11 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 import mubstimor.android.kwikorder.R;
+import mubstimor.android.kwikorder.util.Constants;
+import mubstimor.android.kwikorder.util.PreferencesManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView txtEmail;
+    TextView txtUsername;
+    PreferencesManager preferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        preferencesManager = new PreferencesManager(getApplicationContext());
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +58,12 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        txtEmail = (TextView) headerView.findViewById(R.id.txtEmail);
+        txtUsername = (TextView) headerView.findViewById(R.id.txtUsername);
+        txtUsername.setText(preferencesManager.getValue(Constants.KEY_USERNAME));
+        txtEmail.setText(preferencesManager.getValue(Constants.KEY_USEREMAIL));
     }
 
     @Override
@@ -92,9 +108,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
             intent = new Intent(this, MainActivity.class);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_neworder) {
             intent = new Intent(this, RecordOrderActivity.class);
-
+        } else if (id == R.id.nav_logout) {
+            intent = new Intent(this, LogoutActivity.class);
         }
 
         startActivity(intent);

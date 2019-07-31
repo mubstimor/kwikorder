@@ -6,6 +6,7 @@ package mubstimor.android.kwikorder.model;
 public class LoginModel {
 
     private String email;
+    private String username;
     private String password;
     private String token;
 
@@ -44,14 +45,11 @@ public class LoginModel {
         this.token = token;
     }
 
-    //    @Override
-//    public String toString() {
-//        String greeting = "{"
-//                + "'username': 'convergebot',"
-//                + "'text':'Hello " + email + ", "
-//                + "Have a good day!"
-//                + "' "
-//                + "}";
-//        return greeting;
-//    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

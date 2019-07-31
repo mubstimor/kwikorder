@@ -1,9 +1,11 @@
 package mubstimor.android.kwikorder.view;
 
+import mubstimor.android.kwikorder.model.LoginModel;
+
 public interface LoginView {
     /**
      * print results to login screen.
-     * @param response string to notify slack status
+     * @param loginResponse string to notify slack status
      */
-    void responseReady(String response);
+    void responseReady(LoginModel loginResponse);
 }
